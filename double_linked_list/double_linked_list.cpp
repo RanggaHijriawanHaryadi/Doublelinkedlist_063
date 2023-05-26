@@ -5,7 +5,7 @@ using namespace std;
 class Node {
 public:
 	int noMhs;
-	string nama;
+	string name;
 	Node* next;
 	Node* prev;
 };
@@ -39,7 +39,7 @@ void DoubleLinkedList::addNode() {
 
 	Node* newNode = new Node(); //step1
 	newNode->noMhs = nim; // step 2
-	newNode->nama = nm; // step 2
+	newNode->name = nm; // step 2
 
 	/*insert a node in the begining of a doubly - Linked list*/
 	if (START == NULL || nim <= START->noMhs) {
@@ -112,7 +112,7 @@ void DoubleLinkedList::traverse() {
 		cout << "\nRecords in ascending order of roll number are:" << endl;
 		Node* currentNode = START;
 		while (currentNode != NULL) {
-			cout << currentNode->noMhs << " " << currentNode->nama << endl;
+			cout << currentNode->noMhs << " " << currentNode->name << endl;
 			currentNode = currentNode->next;
 		}
 	}
@@ -130,7 +130,7 @@ void DoubleLinkedList::revtraverse() {
 			currenNode = currenNode->next;
 
 		while (currenNode != NULL) {
-			cout << currenNode->noMhs << " " << currenNode->nama << endl;
+			cout << currenNode->noMhs << " " << currenNode->name << endl;
 			currenNode = currenNode->prev;
 		}
 	}
@@ -149,4 +149,22 @@ void DoubleLinkedList::hapus() {
 		cout << "Record not found" << endl;
 	else
 		cout << "Record with roll number " << rollNo << " deleted" << endl;
+}
+void DoubleLinkedList::searchData() {
+	if (listEmpty() == true) {
+		cout << "\nList is empty" << endl;
+
+	}
+	Node* prev, * curr;
+	prev = curr = NULL;
+	cout << "\nEnter the roll number of the student whose record you want to search: ";
+	int num;
+	cin >> num;
+	if (DoubleLinkedList::search(num, &prev, &curr) == false)
+		cout << "\nRecord not found" << endl;
+	else {
+		cout << "\nRecord found" << endl;
+		cout << "\nRoll number: " << curr->noMhs << endl;
+		cout << "\nName:  " << curr->name << endl;
+	}
 }
