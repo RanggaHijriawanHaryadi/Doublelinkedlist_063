@@ -14,8 +14,9 @@ class DoubleLinkedList {
 private:
 	Node* START = NULL;
 public:
+	DoubleLinkedList();
 	void addNode();
-	void search(int rollNo, Node** priveous, Node** current);
+	bool search(int rollNo, Node** previeous, Node** current);
 	bool delateNode(int rollNo);
 	bool listEmpty();
 	void traverse();
@@ -23,6 +24,10 @@ public:
 	void hapus();
 	void searchData();
 };
+
+DoubleLinkedList::DoubleLinkedList() {
+	START = NULL;
+}
 
 void DoubleLinkedList::addNode() {
 	int nim;
@@ -41,16 +46,14 @@ void DoubleLinkedList::addNode() {
 		if (START != NULL && nim == START->noMhs) {
 			cout << "\nDuplicate number not allowed" << endl;
 			return;
-
 		}
 		newNode->next = START; // step 3
 			if (START !=NULL)
-			START->prev = newNode;
+			START->prev = newNode; // step 4
 			newNode->prev = NULL; // STEP 5
-			START = newNode; // step 6
+			START = newNode; // step 5
 			return;
 	}
-
 	/*Instrting a Node Between tes Nodes in the list*/
 	Node* current = START; // 1.a
 	Node* privous = NULL; // 1.b
@@ -72,3 +75,12 @@ void DoubleLinkedList::addNode() {
 	current->next = newNode; //step 7
 }
 
+bool  DoubleLinkedList::search(int rollNo, Node** previous, Node** current) {
+	*previous = START; // step 1.a
+	*current = START;  // step 1.b
+	while (*current != NULL && rollNo != (*current)->noMhs) { // step 1.c
+		*previous = *current; // step 1.d
+		*current = (*current)->next; //step 1.e
+	}
+	return (*current != NULL);
+}
