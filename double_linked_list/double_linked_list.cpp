@@ -14,5 +14,13 @@ class DoubleLinkedList {
 private:
 	Node* START = NULL;
 public:
+	void addNode();
+	void search(int rollNo, Node** priveous, Node** current);
+	bool delateNode(int rollNo);
+	bool listEmpty();
+	void traverse();
+	void revtraverse();
+	void hapus();
+	void searchData();
 };
 
