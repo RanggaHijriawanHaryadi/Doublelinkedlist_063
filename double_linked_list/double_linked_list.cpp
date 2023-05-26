@@ -117,3 +117,21 @@ void DoubleLinkedList::traverse() {
 		}
 	}
 }
+
+void DoubleLinkedList::revtraverse() {
+	if (listEmpty()) {
+		cout << "\nList is empty" << endl;
+	}
+
+	else {
+		cout << "\nRecords in descending order of roll number are:" << endl;
+		Node* currenNode = START;
+		while (currenNode->next != NULL)
+			currenNode = currenNode->next;
+
+		while (currenNode != NULL) {
+			cout << currenNode->noMhs << " " << currenNode->nama << endl;
+			currenNode = currenNode->prev;
+		}
+	}
+}
